@@ -2,119 +2,125 @@
 
 namespace App\Entity;
 
+use App\Repository\ArticleRepository;
+use Doctrine\ORM\Mapping as ORM;
 
-use \DateTime;
-
+/**
+ * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ */
 class Article
 {
-    private string $title;
-    private string $subtitle;
-    private \DateTime $createdAt;
-    private string $author;
-    private string $body;
-    private string $image;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
     /**
-     * @return string
+     * @ORM\Column(type="string", length=255)
      */
-    public function getTitle(): string
+    private $title;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $subtitle;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $author;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $body;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     */
-    public function setTitle(string $title): void
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getSubtitle(): string
+    public function getSubtitle(): ?string
     {
         return $this->subtitle;
     }
 
-    /**
-     * @param string $subtitle
-     */
-    public function setSubtitle(string $subtitle): void
+    public function setSubtitle(string $subtitle): self
     {
         $this->subtitle = $subtitle;
+
+        return $this;
     }
 
-
-
-    /**
-     * @return DateTime
-     */
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param DateTime $createdAt
-     */
-    public function setCreatedAt(DateTime $createdAt): void
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getAuthor(): string
+    public function getAuthor(): ?string
     {
         return $this->author;
     }
 
-    /**
-     * @param string $author
-     */
-    public function setAuthor(string $author): void
+    public function setAuthor(string $author): self
     {
         $this->author = $author;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getBody(): string
+    public function getBody(): ?string
     {
         return $this->body;
     }
 
-    /**
-     * @param string $body
-     */
-    public function setBody(string $body): void
+    public function setBody(string $body): self
     {
         $this->body = $body;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getImage(): string
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    /**
-     * @param string $image
-     */
-    public function setImage(string $image): void
+    public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
     }
-
-
-
-    /**
-     * @Route("/", name="home")
-     */
 }
