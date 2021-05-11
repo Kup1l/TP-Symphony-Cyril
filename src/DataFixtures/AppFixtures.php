@@ -22,8 +22,11 @@ class AppFixtures extends Fixture
             $article->setBody($faker->text(200));
             $article->setImage("none.png");
             $manager->persist($article);
+            $this->addReference('article' . $i, $article);
         }
 
         $manager->flush();
     }
+
+
 }
